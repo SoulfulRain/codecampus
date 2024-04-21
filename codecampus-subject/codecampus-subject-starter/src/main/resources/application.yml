@@ -1,0 +1,32 @@
+server:
+  port: 3010  # 指定服务器端口号
+
+spring:
+  datasource: # 数据源配置
+    username: root  # 数据库的用户名
+    password: LxBJjmKdGP5n1og89wus8VTH4tq0V996ZCcRHgCWWOmBviIxB8wmKrhGM90i+XVe1Z4IoJIGE8lcgHJ92+2/Ng== # 数据库的密码
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC驱动的完整类名
+    url: jdbc:mysql://203.195.210.183:3306/code_campus?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false  # 数据库连接URL
+    type: com.alibaba.druid.pool.DruidDataSource  # 使用Druid作为数据库连接池
+    druid: # Druid连接池的配置项
+      initial-size: 20  # 初始化时建立的连接数
+      min-idle: 20  # 最小空闲连接数
+      connectionProperties: config.decrypt=true;config.decrypt.key=${publicKey};
+      max-active: 100  # 最大活跃连接数
+      max-wait: 60000  # 连接等待超时时间，单位为毫秒
+      stat-view-servlet: # 配置Druid的监控页面
+        enabled: true  # 是否启用
+        url-pattern: /druid/*  # 监控页面的URL模式
+        login-username: admin  # 监控页面的登录用户名
+        login-password: 123456  # 监控页面的登录密码
+      filter: # Druid的过滤器配置
+        stat: # 统计过滤器
+          enabled: true  # 是否启用
+          slow-sql-millis: 2000  # 慢SQL执行时间的阈值，单位为毫秒
+          log-slow-sql: true  # 是否记录慢SQL
+        wall: # 防御性过滤器
+          enabled: true  # 是否启用
+        config: # 配置过滤器
+          enabled: true  # 是否启用
+
+publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ1yzcVuHNR3n+GKq1RJPDMbnfbCKTqre8AQ788V+IkMUsJMmWtwevMhcdP9vrijx0qpsdjMvDlLQohH3GeUCx8CAwEAAQ==
