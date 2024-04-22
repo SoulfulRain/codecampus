@@ -21,4 +21,9 @@ public interface SubjectCategoryDomainService {
      * 更新分类
      */
     Boolean update(SubjectCategoryBO subjectCategoryBO);
+
+    /**
+     * 删除分类
+     */
+    Boolean delete(SubjectCategoryBO subjectCategoryBO);
 }

@@ -56,13 +56,21 @@ public class SubjectCategoryController {
 
     /**
      * 查询岗位大类
+     *
+     * @param subjectCategoryDTO 请求参数，包含查询所需的条件信息
+     * @return 返回岗位大类的查询结果，封装在Result<List<SubjectCategoryDTO>>中，
+     *         如果查询成功，Result的isSuccess方法将返回true，并包含岗位大类列表；
+     *         如果查询失败，Result的isSuccess方法将返回false，并提供错误信息。
      */
     @PostMapping("/queryPrimaryCategory")
     public Result<List<SubjectCategoryDTO>> queryPrimaryCategory(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
         try {
+            // 将请求DTO转换为业务对象
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.
                     convertDtoToCategoryBO(subjectCategoryDTO);
+            // 调用领域服务查询岗位大类
             List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.queryCategory(subjectCategoryBO);
+            // 将业务对象列表转换为DTO列表
             List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConverter.INSTANCE
                     .convertCategoryBOListToDTOList(subjectCategoryBOList);
             return Result.ok(subjectCategoryDTOList);
@@ -72,8 +80,12 @@ public class SubjectCategoryController {
         }
     }
 
+
     /**
-     * 根据分类id查二级分类
+     * 根据一级分类的ID查询相应的二级分类信息。
+     *
+     * @param subjectCategoryDTO 包含一级分类ID的信息对象。
+     * @return 返回查询到的二级分类列表的结果对象，其中包含二级分类的详细信息。
      */
     @PostMapping("/queryCategoryByPrimary")
     public Result<List<SubjectCategoryDTO>> queryCategoryByPrimary(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
@@ -81,9 +93,13 @@ public class SubjectCategoryController {
             if (log.isInfoEnabled()) {
                 log.info("SubjectCategoryController.queryCategoryByPrimary.dto:{}", JSON.toJSONString(subjectCategoryDTO));
             }
+            // 检查传入的一级分类ID不能为空
             Preconditions.checkNotNull(subjectCategoryDTO.getParentId(), "分类id不能为空");
+            // 将DTO对象转换为业务对象
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToCategoryBO(subjectCategoryDTO);
+            // 调用领域服务查询二级分类信息
             List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.queryCategory(subjectCategoryBO);
+            // 将业务对象列表转换为DTO列表
             List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConverter.INSTANCE.convertCategoryBOListToDTOList(subjectCategoryBOList);
             return Result.ok(subjectCategoryDTOList);
         } catch (Exception e) {
@@ -91,6 +107,7 @@ public class SubjectCategoryController {
             return Result.fail("查询失败");
         }
     }
+
 
 
     /**
@@ -109,6 +126,25 @@ public class SubjectCategoryController {
         } catch (Exception e) {
             log.error("SubjectCategoryController.update.error:{}", e.getMessage(), e);
             return Result.fail("更新分类失败");
+        }
+    }
+
+    /**
+     * 删除分类
+     */
+    @PostMapping("/delete")
+    public Result<Boolean> delete(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectCategoryController.delete.dto:{}", JSON.toJSONString(subjectCategoryDTO));
+            }
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.
+                    convertDtoToCategoryBO(subjectCategoryDTO);
+            Boolean result = subjectCategoryDomainService.delete(subjectCategoryBO);
+                return Result.ok(result);
+        } catch (Exception e) {
+            log.error("SubjectCategoryController.delete.error:{}", e.getMessage(), e);
+            return Result.fail("删除分类失败");
         }
     }
 
