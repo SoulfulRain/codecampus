@@ -31,19 +31,32 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         subjectCategoryService.insert(subjectCategory);
     }
 
+    /**
+     * 查询主题类别信息。
+     *
+     * @param subjectCategoryBO 主题类别业务对象，用于传递查询条件。
+     * @return 返回主题类别信息的业务对象列表。
+     */
     @Override
     public List<SubjectCategoryBO> queryCategory(SubjectCategoryBO subjectCategoryBO) {
+        // 将业务对象转换为数据实体，设置未删除标志
         SubjectCategory subjectCategory = SubjectCategoryConverter.INSTANCE
                 .convertBoToCategory(subjectCategoryBO);
         subjectCategory.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
+
+        // 调用服务查询符合条件的主题类别数据
         List<SubjectCategory> subjectCategoryList = subjectCategoryService.queryCategory(subjectCategory);
+
+        // 将查询结果的数据实体列表转换回业务对象列表
         List<SubjectCategoryBO> subjectCategoryBOList = SubjectCategoryConverter.INSTANCE
                 .convertCategoryListToBoList(subjectCategoryList);
+
         if (log.isInfoEnabled()) {
             log.info("SubjectCategoryController.queryPrimaryCategory.boList:{}", JSON.toJSONString(subjectCategoryBOList));
         }
         return subjectCategoryBOList;
     }
+
 
     /**
      * 更新分类

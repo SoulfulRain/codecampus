@@ -2,6 +2,8 @@ package com.rainsoul.subject.infra.basic.service;
 
 import com.rainsoul.subject.infra.basic.entity.SubjectMapping;
 
+import java.util.List;
+
 /**
  * 题目分类关系表(SubjectMapping)表服务接口
  *
@@ -41,4 +43,8 @@ public interface SubjectMappingService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 查询标签id
+     */
+    List<SubjectMapping> queryLabelId(SubjectMapping subjectMapping);
 }

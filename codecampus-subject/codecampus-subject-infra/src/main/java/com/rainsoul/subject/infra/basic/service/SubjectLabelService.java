@@ -2,6 +2,8 @@ package com.rainsoul.subject.infra.basic.service;
 
 import com.rainsoul.subject.infra.basic.entity.SubjectLabel;
 
+import java.util.List;
+
 /**
  * 题目标签表(SubjectLabel)表服务接口
  *
@@ -24,15 +26,14 @@ public interface SubjectLabelService {
      * @param subjectLabel 实例对象
      * @return 实例对象
      */
-    SubjectLabel insert(SubjectLabel subjectLabel);
+    int insert(SubjectLabel subjectLabel);
 
     /**
      * 修改数据
      *
      * @param subjectLabel 实例对象
-     * @return 实例对象
      */
-    SubjectLabel update(SubjectLabel subjectLabel);
+    int update(SubjectLabel subjectLabel);
 
     /**
      * 通过主键删除数据
@@ -42,4 +43,7 @@ public interface SubjectLabelService {
      */
     boolean deleteById(Long id);
 
+    List<SubjectLabel> queryByCondition(SubjectLabel subjectLabel);
+
+    List<SubjectLabel> batchQueryById(List<Long> labelIdList);
 }
