@@ -2,6 +2,8 @@ package com.rainsoul.subject.infra.basic.service;
 
 import com.rainsoul.subject.infra.basic.entity.SubjectRadio;
 
+import java.util.List;
+
 /**
  * 单选题信息表(SubjectRadio)表服务接口
  *
@@ -42,4 +44,7 @@ public interface SubjectRadioService {
      */
     boolean deleteById(Long id);
 
+    void batchInsert(List<SubjectRadio> subjectRadioList);
+
+    List<SubjectRadio> queryByConditon(SubjectRadio subjectRadio);
 }

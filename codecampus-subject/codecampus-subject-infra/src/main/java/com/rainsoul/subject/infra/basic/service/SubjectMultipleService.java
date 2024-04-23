@@ -2,6 +2,8 @@ package com.rainsoul.subject.infra.basic.service;
 
 import com.rainsoul.subject.infra.basic.entity.SubjectMultiple;
 
+import java.util.List;
+
 /**
  * 多选题信息表(SubjectMultiple)表服务接口
  *
@@ -42,4 +44,10 @@ public interface SubjectMultipleService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 批量插入
+     */
+    void batchInsert(List<SubjectMultiple> subjectMultipleList);
+
+    List<SubjectMultiple> queryByCondition(SubjectMultiple subjectMultiple);
 }

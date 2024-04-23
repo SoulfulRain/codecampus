@@ -6,6 +6,7 @@ import com.rainsoul.subject.infra.basic.service.SubjectInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 题目信息表(SubjectInfo)表服务实现类
@@ -63,4 +64,16 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     public boolean deleteById(Long id) {
         return this.subjectInfoDao.deleteById(id) > 0;
     }
+
+    @Override
+    public int countByCondition(SubjectInfo subjectInfo, Long categoryId, Long labelId) {
+        return this.subjectInfoDao.countByCondition(subjectInfo, categoryId, labelId);
+    }
+
+    @Override
+    public List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long categoryId, Long labelId, int start, Integer pageSize) {
+        return this.subjectInfoDao.queryPage(subjectInfo, categoryId, labelId, start, pageSize);
+    }
+
+
 }
