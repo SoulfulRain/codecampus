@@ -22,7 +22,6 @@ public class SubjectTypeHandlerFactory implements InitializingBean {
         return handlerMap.get(subjectInfoTypeEnum);
     }
 
-
     @Override
     public void afterPropertiesSet() throws Exception {
         for (SubjectTypeHandler subjectTypeHandler : subjectTypeHandlerList) {

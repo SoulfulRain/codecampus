@@ -47,6 +47,4 @@ public class MultipleTypeHandler implements SubjectTypeHandler{
         subjectOptionBO.setOptionList(subjectAnswerBOList);
         return subjectOptionBO;
     }
-
-
 }

@@ -1,0 +1,6 @@
+server:
+  port: 4000
+minio:
+  url: http://203.195.210.183:9090
+  accessKey: minioadmin
+  secretKey: minioadmin
