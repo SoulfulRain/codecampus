@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>codecampus-auth-api</module>
-        <module>codecampus-auth-controller</module>
+        <module>codecampus-auth-application</module>
         <module>codecampus-auth-common</module>
         <module>codecampus-auth-domain</module>
         <module>codecampus-auth-infra</module>

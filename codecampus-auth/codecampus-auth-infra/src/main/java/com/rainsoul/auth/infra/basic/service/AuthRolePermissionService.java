@@ -8,7 +8,7 @@ import com.rainsoul.auth.infra.basic.entity.AuthRolePermission;
  * @author makejava
  * @since 2024-04-25 19:02:51
  */
-public interface AuthRolePremissionService {
+public interface AuthRolePermissionService {
 
     /**
      * 通过ID查询单条数据

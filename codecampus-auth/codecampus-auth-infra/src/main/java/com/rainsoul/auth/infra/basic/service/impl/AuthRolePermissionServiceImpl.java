@@ -1,8 +1,8 @@
 package com.rainsoul.auth.infra.basic.service.impl;
 
-import com.rainsoul.auth.infra.basic.dao.AuthRolePremissionDao;
+import com.rainsoul.auth.infra.basic.dao.AuthRolePermissionDao;
 import com.rainsoul.auth.infra.basic.entity.AuthRolePermission;
-import com.rainsoul.auth.infra.basic.service.AuthRolePremissionService;
+import com.rainsoul.auth.infra.basic.service.AuthRolePermissionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,9 +14,9 @@ import javax.annotation.Resource;
  * @since 2024-04-25 19:02:51
  */
 @Service("authRolePremissionService")
-public class AuthRolePremissionServiceImpl implements AuthRolePremissionService {
+public class AuthRolePermissionServiceImpl implements AuthRolePermissionService {
     @Resource
-    private AuthRolePremissionDao authRolePremissionDao;
+    private AuthRolePermissionDao authRolePremissionDao;
 
     /**
      * 通过ID查询单条数据

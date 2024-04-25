@@ -11,7 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2024-04-25 19:02:51
  */
-public interface AuthRolePremissionDao {
+public interface AuthRolePermissionDao {
 
     /**
      * 通过ID查询单条数据
