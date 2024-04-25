@@ -55,8 +55,8 @@ public class DruidEncryptUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        /*String encrypt = encrypt("codecampus1120");
-        System.out.println("encrypt:" + encrypt);*/
+        String encrypt = encrypt("codecampus1120");
+        System.out.println("encrypt:" + encrypt);
     }
 
 }

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: jc-club-oss-dev
+    name: jc-club-gateway-dev
   profiles:
     active: dev
   cloud:

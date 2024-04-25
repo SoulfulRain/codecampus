@@ -168,18 +168,109 @@ CREATE TABLE `subject_radio`
   AUTO_INCREMENT = 35
   DEFAULT CHARSET = utf8 COMMENT ='单选题信息表';
 
+-- ----------------------------
+-- Table structure for auth_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_permission`;
+CREATE TABLE `auth_permission`
+(
+    `id`             bigint(20) NOT NULL,
+    `name`           varchar(64)  DEFAULT NULL,
+    `parent_id`      bigint(20)   DEFAULT NULL,
+    `type`           tinyint(4)   DEFAULT NULL,
+    `menu_url`       varchar(255) DEFAULT NULL,
+    `status`         tinyint(2)   DEFAULT NULL,
+    `show`           tinyint(2)   DEFAULT NULL,
+    `icon`           varchar(128) DEFAULT NULL,
+    `permission_key` varchar(64)  DEFAULT NULL,
+    `created_by`     varchar(32)  DEFAULT NULL COMMENT '创建人',
+    `created_time`   datetime     DEFAULT NULL COMMENT '创建时间',
+    `update_by`      varchar(32)  DEFAULT NULL COMMENT '更新人',
+    `update_time`    datetime     DEFAULT NULL COMMENT '更新时间',
+    `is_deleted`     int(11)      DEFAULT '0',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
-# 插入数据测试
-use code_campus;
-INSERT INTO subject_category (category_name, category_type, image_url, parent_id, created_by, created_time, update_by,
-                              update_time, is_deleted)
-VALUES ('算法', 1, 'http://example.com/algo.jpg', NULL, 'admin', '2024-04-21 10:00:00', 'admin', '2024-04-21 10:00:00',
-        0),
-       ('数据结构', 1, 'http://example.com/ds.jpg', NULL, 'admin', '2024-04-21 10:00:00', 'admin',
-        '2024-04-21 10:00:00', 0),
-       ('数据库', 1, 'http://example.com/db.jpg', NULL, 'admin', '2024-04-21 10:00:00', 'admin', '2024-04-21 10:00:00',
-        0),
-       ('计算机网络', 1, 'http://example.com/net.jpg', NULL, 'admin', '2024-04-21 10:00:00', 'admin',
-        '2024-04-21 10:00:00', 0),
-       ('编程语言', 1, 'http://example.com/lang.jpg', NULL, 'admin', '2024-04-21 10:00:00', 'admin',
-        '2024-04-21 10:00:00', 0);
+-- ----------------------------
+-- Table structure for auth_role
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_role`;
+CREATE TABLE `auth_role`
+(
+    `id`           bigint(20) NOT NULL,
+    `role_name`    varchar(32) DEFAULT NULL,
+    `role_key`     varchar(64) DEFAULT NULL,
+    `created_by`   varchar(32) DEFAULT NULL COMMENT '创建人',
+    `created_time` datetime    DEFAULT NULL COMMENT '创建时间',
+    `update_by`    varchar(32) DEFAULT NULL COMMENT '更新人',
+    `update_time`  datetime    DEFAULT NULL COMMENT '更新时间',
+    `is_deleted`   int(11)     DEFAULT '0',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for auth_role_premission
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_role_premission`;
+CREATE TABLE `auth_role_premission`
+(
+    `id`            bigint(20) NOT NULL,
+    `role_id`       bigint(20)  DEFAULT NULL,
+    `permission_id` bigint(20)  DEFAULT NULL,
+    `created_by`    varchar(32) DEFAULT NULL COMMENT '创建人',
+    `created_time`  datetime    DEFAULT NULL COMMENT '创建时间',
+    `update_by`     varchar(32) DEFAULT NULL COMMENT '更新人',
+    `update_time`   datetime    DEFAULT NULL COMMENT '更新时间',
+    `is_deleted`    int(11)     DEFAULT '0',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for auth_user
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_user`;
+CREATE TABLE `auth_user`
+(
+    `id`           bigint(20)   DEFAULT NULL,
+    `user_name`    varchar(32)  DEFAULT NULL,
+    `nick_name`    varchar(32)  DEFAULT NULL,
+    `email`        varchar(32)  DEFAULT NULL,
+    `phone`        varchar(32)  DEFAULT NULL,
+    `password`     varchar(64)  DEFAULT NULL,
+    `sex`          tinyint(2)   DEFAULT NULL,
+    `avatar`       varchar(255) DEFAULT NULL,
+    `status`       tinyint(2)   DEFAULT NULL,
+    `introduce`    varchar(255) DEFAULT NULL,
+    `ext_json`     varchar(255) DEFAULT NULL,
+    `created_by`   varchar(32)  DEFAULT NULL COMMENT '创建人',
+    `created_time` datetime     DEFAULT NULL COMMENT '创建时间',
+    `update_by`    varchar(32)  DEFAULT NULL COMMENT '更新人',
+    `update_time`  datetime     DEFAULT NULL COMMENT '更新时间',
+    `is_deleted`   int(11)      DEFAULT '0'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for auth_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_user_role`;
+CREATE TABLE `auth_user_role`
+(
+    `id`           bigint(20)  DEFAULT NULL,
+    `user_id`      bigint(20)  DEFAULT NULL,
+    `role_id`      bigint(20)  DEFAULT NULL,
+    `created_by`   varchar(32) DEFAULT NULL COMMENT '创建人',
+    `created_time` datetime    DEFAULT NULL COMMENT '创建时间',
+    `update_by`    varchar(32) DEFAULT NULL COMMENT '更新人',
+    `update_time`  datetime    DEFAULT NULL COMMENT '更新时间',
+    `is_deleted`   int(11)     DEFAULT '0'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+
+
+
+
