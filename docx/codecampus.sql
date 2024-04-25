@@ -213,7 +213,7 @@ CREATE TABLE `auth_role`
 -- ----------------------------
 -- Table structure for auth_role_premission
 -- ----------------------------
-DROP TABLE IF EXISTS `auth_role_premission`;
+DROP TABLE IF EXISTS auth_role_permission;
 CREATE TABLE `auth_role_premission`
 (
     `id`            bigint(20) NOT NULL,

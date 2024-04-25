@@ -1,0 +1,8 @@
+server:
+  port: 3011
+  spring:
+    datasource:
+      username: root
+      password: 1120Rain
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://203.195.210.183:3306/code_campus?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
