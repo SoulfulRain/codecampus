@@ -18,61 +18,76 @@
     </properties>
 
     <dependencies>
+        <!-- Minio 客户端库，用于与 Minio 服务器进行交互 -->
         <dependency>
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
             <version>8.2.0</version>
         </dependency>
+
+        <!-- Lombok 库，用于简化 Java 代码，消除冗余的 getter/setter 等 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.16</version>
         </dependency>
+
+        <!-- Spring Cloud Alibaba Nacos Config 客户端，用于从 Nacos 获取配置 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+
+        <!-- Spring Cloud Bootstrap 启动器，用于简化 Spring Cloud 应用的配置 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
+
+        <!-- Spring Cloud Alibaba Nacos Discovery 客户端，用于服务注册与发现 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+
+        <!-- Spring Cloud Gateway 启动器，用于构建微服务网关 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
+
+        <!-- Spring Cloud Load Balancer 客户端，用于客户端负载均衡 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-loadbalancer</artifactId>
         </dependency>
 
-        <!-- Sa-Token 权限认证（Reactor响应式集成）, 在线文档：https://sa-token.cc -->
+        <!-- Sa-Token 权限认证库的 Reactor 响应式集成版本 -->
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-reactor-spring-boot-starter</artifactId>
             <version>1.37.0</version>
         </dependency>
 
-        <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+        <!-- Sa-Token 整合 Redis 的库，使用 jackson 作为序列化方式 -->
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-redis-jackson</artifactId>
             <version>1.37.0</version>
         </dependency>
+
+        <!-- Apache Commons Pool 2，提供对象池功能，可用于管理数据库连接池等 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
         </dependency>
 
+        <!-- Gson 库，用于 Java 对象与 JSON 之间的转换 -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.6</version>
         </dependency>
-
     </dependencies>
 
     <dependencyManagement>

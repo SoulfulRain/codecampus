@@ -1,6 +1,6 @@
 spring:
   application:
-    name: jc-club-gateway-dev
+    name: codecampus-gateway-dev
   profiles:
     active: dev
   cloud:
