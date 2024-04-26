@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.rainsoul</groupId>
-        <artifactId>codecampus-auth-application</artifactId>
+        <artifactId>codecampus-auth</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
@@ -14,6 +14,7 @@
     <modules>
         <module>codecampus-auth-application-controller</module>
     </modules>
+
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

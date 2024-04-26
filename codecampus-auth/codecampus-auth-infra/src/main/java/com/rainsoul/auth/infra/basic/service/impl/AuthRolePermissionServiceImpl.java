@@ -1,6 +1,6 @@
 package com.rainsoul.auth.infra.basic.service.impl;
 
-import com.rainsoul.auth.infra.basic.dao.AuthRolePermissionDao;
+import com.rainsoul.auth.infra.basic.mapper.AuthRolePermissionDao;
 import com.rainsoul.auth.infra.basic.entity.AuthRolePermission;
 import com.rainsoul.auth.infra.basic.service.AuthRolePermissionService;
 import org.springframework.stereotype.Service;

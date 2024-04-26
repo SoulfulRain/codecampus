@@ -1,17 +1,17 @@
-package com.rainsoul.auth.infra.basic.dao;
+package com.rainsoul.auth.infra.basic.mapper;
 
-import com.rainsoul.auth.infra.basic.entity.AuthRole;
+import com.rainsoul.auth.infra.basic.entity.AuthRolePermission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
- * (AuthRole)表数据库访问层
+ * (AuthRolePremission)表数据库访问层
  *
  * @author makejava
- * @since 2024-04-25 19:01:33
+ * @since 2024-04-25 19:02:51
  */
-public interface AuthRoleDao {
+public interface AuthRolePermissionDao {
 
     /**
      * 通过ID查询单条数据
@@ -19,57 +19,57 @@ public interface AuthRoleDao {
      * @param id 主键
      * @return 实例对象
      */
-    AuthRole queryById(Long id);
+    AuthRolePermission queryById(Long id);
 
     /**
      * 查询指定行数据
      *
-     * @param authRole 查询条件
+     * @param authRolePremission 查询条件
      * @param pageable         分页对象
      * @return 对象列表
      */
-    List<AuthRole> queryAllByLimit(AuthRole authRole, @Param("pageable") Pageable pageable);
+    List<AuthRolePermission> queryAllByLimit(AuthRolePermission authRolePremission, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
      *
-     * @param authRole 查询条件
+     * @param authRolePremission 查询条件
      * @return 总行数
      */
-    long count(AuthRole authRole);
+    long count(AuthRolePermission authRolePremission);
 
     /**
      * 新增数据
      *
-     * @param authRole 实例对象
+     * @param authRolePremission 实例对象
      * @return 影响行数
      */
-    int insert(AuthRole authRole);
+    int insert(AuthRolePermission authRolePremission);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<AuthRole> 实例对象列表
+     * @param entities List<AuthRolePremission> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<AuthRole> entities);
+    int insertBatch(@Param("entities") List<AuthRolePermission> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<AuthRole> 实例对象列表
+     * @param entities List<AuthRolePremission> 实例对象列表
      * @return 影响行数
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
-    int insertOrUpdateBatch(@Param("entities") List<AuthRole> entities);
+    int insertOrUpdateBatch(@Param("entities") List<AuthRolePermission> entities);
 
     /**
      * 修改数据
      *
-     * @param authRole 实例对象
+     * @param authRolePremission 实例对象
      * @return 影响行数
      */
-    int update(AuthRole authRole);
+    int update(AuthRolePermission authRolePremission);
 
     /**
      * 通过主键删除数据

@@ -1,7 +1,7 @@
 package com.rainsoul.auth.domain.converter;
 
+import com.jingdianjichi.auth.infra.basic.entity.AuthUser;
 import com.rainsoul.auth.domain.entity.AuthUserBO;
-import com.rainsoul.auth.infra.basic.entity.AuthUser;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

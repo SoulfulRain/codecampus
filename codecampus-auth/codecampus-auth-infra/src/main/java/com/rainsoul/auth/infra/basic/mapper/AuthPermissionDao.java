@@ -1,17 +1,17 @@
-package com.rainsoul.auth.infra.basic.dao;
+package com.rainsoul.auth.infra.basic.mapper;
 
-import com.rainsoul.auth.infra.basic.entity.AuthRolePermission;
+import com.rainsoul.auth.infra.basic.entity.AuthPermission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
- * (AuthRolePremission)表数据库访问层
+ * (AuthPermission)表数据库访问层
  *
  * @author makejava
- * @since 2024-04-25 19:02:51
+ * @since 2024-04-25 19:02:16
  */
-public interface AuthRolePermissionDao {
+public interface AuthPermissionDao {
 
     /**
      * 通过ID查询单条数据
@@ -19,57 +19,57 @@ public interface AuthRolePermissionDao {
      * @param id 主键
      * @return 实例对象
      */
-    AuthRolePermission queryById(Long id);
+    AuthPermission queryById(Long id);
 
     /**
      * 查询指定行数据
      *
-     * @param authRolePremission 查询条件
+     * @param authPermission 查询条件
      * @param pageable         分页对象
      * @return 对象列表
      */
-    List<AuthRolePermission> queryAllByLimit(AuthRolePermission authRolePremission, @Param("pageable") Pageable pageable);
+    List<AuthPermission> queryAllByLimit(AuthPermission authPermission, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
      *
-     * @param authRolePremission 查询条件
+     * @param authPermission 查询条件
      * @return 总行数
      */
-    long count(AuthRolePermission authRolePremission);
+    long count(AuthPermission authPermission);
 
     /**
      * 新增数据
      *
-     * @param authRolePremission 实例对象
+     * @param authPermission 实例对象
      * @return 影响行数
      */
-    int insert(AuthRolePermission authRolePremission);
+    int insert(AuthPermission authPermission);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<AuthRolePremission> 实例对象列表
+     * @param entities List<AuthPermission> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<AuthRolePermission> entities);
+    int insertBatch(@Param("entities") List<AuthPermission> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<AuthRolePremission> 实例对象列表
+     * @param entities List<AuthPermission> 实例对象列表
      * @return 影响行数
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
-    int insertOrUpdateBatch(@Param("entities") List<AuthRolePermission> entities);
+    int insertOrUpdateBatch(@Param("entities") List<AuthPermission> entities);
 
     /**
      * 修改数据
      *
-     * @param authRolePremission 实例对象
+     * @param authPermission 实例对象
      * @return 影响行数
      */
-    int update(AuthRolePermission authRolePremission);
+    int update(AuthPermission authPermission);
 
     /**
      * 通过主键删除数据

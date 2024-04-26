@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>com.rainsoul</groupId>
-            <artifactId>codecampus-auth-application</artifactId>
+            <artifactId>codecampus-auth-application-controller</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
