@@ -2,11 +2,13 @@ package com.rainsoul.auth.domain.service.impl;
 
 import cn.dev33.satoken.secure.SaSecureUtil;
 import cn.dev33.satoken.stp.SaTokenInfo;
+import cn.dev33.satoken.stp.StpUtil;
 import com.rainsoul.auth.common.enums.AuthUserStatusEnum;
 import com.rainsoul.auth.common.enums.IsDeletedFlagEnum;
 import com.rainsoul.auth.domain.constants.AuthConstant;
 import com.rainsoul.auth.domain.converter.AuthUserBOConverter;
 import com.rainsoul.auth.domain.entity.AuthUserBO;
+import com.rainsoul.auth.domain.redis.RedisUtil;
 import com.rainsoul.auth.domain.service.AuthUserDomainService;
 import com.rainsoul.auth.infra.basic.entity.AuthRole;
 import com.rainsoul.auth.infra.basic.entity.AuthUser;
@@ -16,6 +18,7 @@ import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -39,6 +42,15 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
     private AuthRolePermissionService authRolePermissionService;
 
     private String salt = "anlan";
+
+    @Resource
+    private RedisUtil redisUtil;
+
+    private String authPermissionPrefix = "auth.permission";
+
+    private String authRolePrefix = "auth.role";
+
+    private static final String LOGIN_PREFIX = "loginCode";
 
     @Override
     @SneakyThrows
@@ -88,21 +100,45 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
 
     @Override
     public Boolean update(AuthUserBO authUserBO) {
-        return null;
+        AuthUser authUser = AuthUserBOConverter.INSTANCE.convertBOToEntity(authUserBO);
+        Integer count = authUserService.updateByUserName(authUser);
+        return count > 0;
     }
 
     @Override
     public Boolean delete(AuthUserBO authUserBO) {
-        return null;
+        AuthUser authUser = new AuthUser();
+        authUser.setId(authUserBO.getId());
+        authUser.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
+        Integer count = authUserService.update(authUser);
+        //有任何的更新，都要与缓存进行同步的修改
+        return count > 0;
     }
 
     @Override
     public SaTokenInfo doLogin(String validCode) {
-        return null;
+        String loginKey = redisUtil.buildKey(LOGIN_PREFIX, validCode);
+        String openId = redisUtil.get(loginKey);
+        if (StringUtils.isBlank(openId)) {
+            return null;
+        }
+        AuthUserBO authUserBO = new AuthUserBO();
+        authUserBO.setUserName(openId);
+        this.register(authUserBO);
+        StpUtil.login(openId);
+        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+        return tokenInfo;
     }
 
     @Override
     public AuthUserBO getUserInfo(AuthUserBO authUserBO) {
-        return null;
+        AuthUser authUser = new AuthUser();
+        authUser.setUserName(authUserBO.getUserName());
+        List<AuthUser> userList = authUserService.queryByCondition(authUser);
+        if (CollectionUtils.isEmpty(userList)) {
+            return new AuthUserBO();
+        }
+        AuthUser user = userList.get(0);
+        return AuthUserBOConverter.INSTANCE.convertEntityToBO(user);
     }
 }

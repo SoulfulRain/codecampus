@@ -33,25 +33,30 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
     /**
      * 新增数据
      *
-     * @param authRolePremission 实例对象
+     * @param authRolePermission 实例对象
      * @return 实例对象
      */
     @Override
-    public AuthRolePermission insert(AuthRolePermission authRolePremission) {
-        this.authRolePermissionDao.insert(authRolePremission);
-        return authRolePremission;
+    public AuthRolePermission insert(AuthRolePermission authRolePermission) {
+        this.authRolePermissionDao.insert(authRolePermission);
+        return authRolePermission;
+    }
+
+    @Override
+    public int batchInsert(List<AuthRolePermission> authRolePermissionList) {
+        return this.authRolePermissionDao.insertBatch(authRolePermissionList);
     }
 
     /**
      * 修改数据
      *
-     * @param authRolePremission 实例对象
+     * @param authRolePermission 实例对象
      * @return 实例对象
      */
     @Override
-    public AuthRolePermission update(AuthRolePermission authRolePremission) {
-        this.authRolePermissionDao.update(authRolePremission);
-        return this.queryById(authRolePremission.getId());
+    public AuthRolePermission update(AuthRolePermission authRolePermission) {
+        this.authRolePermissionDao.update(authRolePermission);
+        return this.queryById(authRolePermission.getId());
     }
 
     /**

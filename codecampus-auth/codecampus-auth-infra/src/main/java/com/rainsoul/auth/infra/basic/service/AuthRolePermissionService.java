@@ -11,7 +11,6 @@ import java.util.List;
  * @since 2024-04-25 19:02:51
  */
 public interface AuthRolePermissionService {
-
     /**
      * 通过ID查询单条数据
      *
@@ -23,18 +22,20 @@ public interface AuthRolePermissionService {
     /**
      * 新增数据
      *
-     * @param authRolePremission 实例对象
+     * @param authRolePermission 实例对象
      * @return 实例对象
      */
-    AuthRolePermission insert(AuthRolePermission authRolePremission);
+    AuthRolePermission insert(AuthRolePermission authRolePermission);
+
+    int batchInsert(List<AuthRolePermission> authRolePermissionList);
 
     /**
      * 修改数据
      *
-     * @param authRolePremission 实例对象
+     * @param authRolePermission 实例对象
      * @return 实例对象
      */
-    AuthRolePermission update(AuthRolePermission authRolePremission);
+    AuthRolePermission update(AuthRolePermission authRolePermission);
 
     /**
      * 通过主键删除数据

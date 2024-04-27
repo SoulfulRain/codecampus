@@ -16,10 +16,10 @@ public interface AuthUserDao {
     /**
      * 通过ID查询单条数据
      *
-     * @param  主键
+     * @param id 主键
      * @return 实例对象
      */
-    AuthUser queryById( );
+    AuthUser queryById(Long id);
 
     /**
      * 查询指定行数据
@@ -73,10 +73,11 @@ public interface AuthUserDao {
     /**
      * 通过主键删除数据
      *
-     * @param  主键
+     * @param id 主键
      * @return 影响行数
      */
-    int deleteById( );
+    int deleteById(Long id);
 
+    Integer updateByUserName(AuthUser authUser);
 }
 
