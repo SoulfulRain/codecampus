@@ -24,7 +24,7 @@ public interface AuthUserService {
      * @param authUser 实例对象
      * @return 实例对象
      */
-    AuthUser insert(AuthUser authUser);
+    Integer insert(AuthUser authUser);
 
     /**
      * 修改数据

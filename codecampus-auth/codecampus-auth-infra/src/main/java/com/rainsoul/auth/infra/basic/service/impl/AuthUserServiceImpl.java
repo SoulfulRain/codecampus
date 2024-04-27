@@ -18,6 +18,7 @@ public class AuthUserServiceImpl implements AuthUserService {
     @Resource
     private AuthUserDao authUserDao;
 
+
     /**
      * 通过ID查询单条数据
      *
@@ -36,9 +37,8 @@ public class AuthUserServiceImpl implements AuthUserService {
      * @return 实例对象
      */
     @Override
-    public AuthUser insert(AuthUser authUser) {
-        this.authUserDao.insert(authUser);
-        return authUser;
+    public Integer insert(AuthUser authUser) {
+        return this.authUserDao.insert(authUser);
     }
 
     /**

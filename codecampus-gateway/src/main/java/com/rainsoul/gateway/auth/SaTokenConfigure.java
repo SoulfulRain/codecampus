@@ -26,7 +26,7 @@ public class SaTokenConfigure {
                     // 打印请求路径
                     System.out.println("===========前端访问路径：" + SaHolder.getRequest().getRequestPath());
                     // 登录校验 -- 拦截所有路由，并排除/user/doLogin 用于开放登录
-                    // SaRouter.match("/auth/**", "/auth/user/doLogin", r -> StpUtil.checkRole("admin"));
+                     SaRouter.match("/auth/**", "/auth/user/doLogin", r -> StpUtil.checkRole("admin"));
                     // 对指定路径进行登录检查或权限检查
                     SaRouter.match("/oss/**", r -> StpUtil.checkLogin());
                     SaRouter.match("/subject/subject/add", r -> StpUtil.checkPermission("subject:add"));
