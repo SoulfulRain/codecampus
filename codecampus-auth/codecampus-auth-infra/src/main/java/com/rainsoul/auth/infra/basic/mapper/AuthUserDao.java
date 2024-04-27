@@ -2,7 +2,7 @@ package com.rainsoul.auth.infra.basic.mapper;
 
 import com.rainsoul.auth.infra.basic.entity.AuthUser;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -25,10 +25,9 @@ public interface AuthUserDao {
      * 查询指定行数据
      *
      * @param authUser 查询条件
-     * @param pageable         分页对象
      * @return 对象列表
      */
-    List<AuthUser> queryAllByLimit(AuthUser authUser, @Param("pageable") Pageable pageable);
+    List<AuthUser> queryAllByLimit(AuthUser authUser);
 
     /**
      * 统计总行数

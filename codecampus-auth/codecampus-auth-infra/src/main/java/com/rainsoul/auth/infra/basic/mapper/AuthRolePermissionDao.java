@@ -2,7 +2,7 @@ package com.rainsoul.auth.infra.basic.mapper;
 
 import com.rainsoul.auth.infra.basic.entity.AuthRolePermission;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -24,11 +24,10 @@ public interface AuthRolePermissionDao {
     /**
      * 查询指定行数据
      *
-     * @param authRolePremission 查询条件
-     * @param pageable         分页对象
+     * @param authRolePermission 查询条件
      * @return 对象列表
      */
-    List<AuthRolePermission> queryAllByLimit(AuthRolePermission authRolePremission, @Param("pageable") Pageable pageable);
+    List<AuthRolePermission> queryAllByLimit(AuthRolePermission authRolePermission);
 
     /**
      * 统计总行数

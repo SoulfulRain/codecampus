@@ -2,6 +2,8 @@ package com.rainsoul.auth.infra.basic.service;
 
 import com.rainsoul.auth.infra.basic.entity.AuthRolePermission;
 
+import java.util.List;
+
 /**
  * (AuthRolePremission)表服务接口
  *
@@ -42,4 +44,5 @@ public interface AuthRolePermissionService {
      */
     boolean deleteById(Long id);
 
+    List<AuthRolePermission> queryByCondition(AuthRolePermission authRolePermission);
 }

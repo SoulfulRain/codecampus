@@ -6,6 +6,7 @@ import com.rainsoul.auth.infra.basic.service.AuthRolePermissionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (AuthRolePremission)表服务实现类
@@ -16,7 +17,7 @@ import javax.annotation.Resource;
 @Service("authRolePremissionService")
 public class AuthRolePermissionServiceImpl implements AuthRolePermissionService {
     @Resource
-    private AuthRolePermissionDao authRolePremissionDao;
+    private AuthRolePermissionDao authRolePermissionDao;
 
     /**
      * 通过ID查询单条数据
@@ -26,7 +27,7 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
      */
     @Override
     public AuthRolePermission queryById(Long id) {
-        return this.authRolePremissionDao.queryById(id);
+        return this.authRolePermissionDao.queryById(id);
     }
 
     /**
@@ -37,7 +38,7 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
      */
     @Override
     public AuthRolePermission insert(AuthRolePermission authRolePremission) {
-        this.authRolePremissionDao.insert(authRolePremission);
+        this.authRolePermissionDao.insert(authRolePremission);
         return authRolePremission;
     }
 
@@ -49,7 +50,7 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
      */
     @Override
     public AuthRolePermission update(AuthRolePermission authRolePremission) {
-        this.authRolePremissionDao.update(authRolePremission);
+        this.authRolePermissionDao.update(authRolePremission);
         return this.queryById(authRolePremission.getId());
     }
 
@@ -61,6 +62,11 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
      */
     @Override
     public boolean deleteById(Long id) {
-        return this.authRolePremissionDao.deleteById(id) > 0;
+        return this.authRolePermissionDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<AuthRolePermission> queryByCondition(AuthRolePermission authRolePermission) {
+        return this.authRolePermissionDao.queryAllByLimit(authRolePermission);
     }
 }
