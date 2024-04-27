@@ -6,6 +6,7 @@ import com.rainsoul.auth.infra.basic.service.AuthPermissionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (AuthPermission)表服务实现类
@@ -36,9 +37,8 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
      * @return 实例对象
      */
     @Override
-    public AuthPermission insert(AuthPermission authPermission) {
-        this.authPermissionDao.insert(authPermission);
-        return authPermission;
+    public int insert(AuthPermission authPermission) {
+        return this.authPermissionDao.insert(authPermission);
     }
 
     /**
@@ -48,9 +48,8 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
      * @return 实例对象
      */
     @Override
-    public AuthPermission update(AuthPermission authPermission) {
-        this.authPermissionDao.update(authPermission);
-        return this.queryById(authPermission.getId());
+    public int update(AuthPermission authPermission) {
+        return this.authPermissionDao.update(authPermission);
     }
 
     /**
@@ -62,5 +61,10 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
     @Override
     public boolean deleteById(Long id) {
         return this.authPermissionDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<AuthPermission> queryByRoleList(List<Long> roleIdList) {
+        return this.authPermissionDao.queryByRoleList(roleIdList);
     }
 }

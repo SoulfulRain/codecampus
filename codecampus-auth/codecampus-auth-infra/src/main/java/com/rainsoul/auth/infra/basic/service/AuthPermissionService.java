@@ -20,13 +20,14 @@ public interface AuthPermissionService {
      */
     AuthPermission queryById(Long id);
 
+
     /**
      * 新增数据
      *
      * @param authPermission 实例对象
      * @return 实例对象
      */
-    AuthPermission insert(AuthPermission authPermission);
+    int insert(AuthPermission authPermission);
 
     /**
      * 修改数据
@@ -34,7 +35,7 @@ public interface AuthPermissionService {
      * @param authPermission 实例对象
      * @return 实例对象
      */
-    AuthPermission update(AuthPermission authPermission);
+    int update(AuthPermission authPermission);
 
     /**
      * 通过主键删除数据
@@ -43,5 +44,7 @@ public interface AuthPermissionService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
+    List<AuthPermission> queryByRoleList(List<Long> roleIdList);
 
 }
