@@ -115,29 +115,57 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         return count > 0;
     }
 
+    /**
+     * 执行登录操作。
+     * 首先通过验证码验证用户身份，然后注册用户，最后登录并返回token信息。
+     *
+     * @param validCode 验证码，用于验证用户身份。
+     * @return 返回登录后的token信息，如果登录失败或验证失败则返回null。
+     */
     @Override
     public SaTokenInfo doLogin(String validCode) {
+        // 生成登录key，基于验证码
         String loginKey = redisUtil.buildKey(LOGIN_PREFIX, validCode);
+        // 根据登录key从Redis获取openId
         String openId = redisUtil.get(loginKey);
+        // 如果openId为空，表示验证失败，返回null
         if (StringUtils.isBlank(openId)) {
             return null;
         }
+        // 准备用户信息并设置用户名为openId
         AuthUserBO authUserBO = new AuthUserBO();
         authUserBO.setUserName(openId);
+        // 注册用户
         this.register(authUserBO);
+        // 执行登录操作
         StpUtil.login(openId);
+        // 获取登录后的token信息
         SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
         return tokenInfo;
     }
 
+
+    /**
+     * 根据传入的AuthUserBO对象获取对应的用户信息。
+     *
+     * @param authUserBO 包含用户名称的AuthUserBO对象。
+     * @return 返回一个AuthUserBO对象，包含查询到的用户信息。如果没有查询到用户，则返回一个空的AuthUserBO对象。
+     */
     @Override
     public AuthUserBO getUserInfo(AuthUserBO authUserBO) {
+        // 创建一个AuthUser实例并设置用户名，用于查询条件
         AuthUser authUser = new AuthUser();
         authUser.setUserName(authUserBO.getUserName());
+
+        // 根据用户名查询用户列表
         List<AuthUser> userList = authUserService.queryByCondition(authUser);
+
+        // 如果查询结果为空，返回一个新的空AuthUserBO对象
         if (CollectionUtils.isEmpty(userList)) {
             return new AuthUserBO();
         }
+
+        // 从查询结果中获取第一个用户，然后将其转换为AuthUserBO对象后返回
         AuthUser user = userList.get(0);
         return AuthUserBOConverter.INSTANCE.convertEntityToBO(user);
     }
